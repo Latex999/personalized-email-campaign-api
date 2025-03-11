@@ -18,6 +18,10 @@ const userRoutes = require('./routes/user.routes');
 const templateRoutes = require('./routes/template.routes');
 const campaignRoutes = require('./routes/campaign.routes');
 const eventRoutes = require('./routes/event.routes');
+const trackingRoutes = require('./routes/tracking.routes');
+
+// Import services
+const emailService = require('./services/email.service');
 
 // Create Express app
 const app = express();
@@ -35,6 +39,9 @@ mongoose
     logger.error('MongoDB connection error:', err);
     process.exit(1);
   });
+
+// Initialize email service
+emailService.initializeEmailService();
 
 // Swagger definition
 const swaggerOptions = {
@@ -92,6 +99,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/templates', templateRoutes);
 app.use('/api/campaigns', campaignRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/track', trackingRoutes);
+app.use('/api/unsubscribe', trackingRoutes);
 
 // Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
