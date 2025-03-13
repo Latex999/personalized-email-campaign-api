@@ -52,11 +52,6 @@ An API service for sending customized emails based on user behavior tracking.
 
 The API will be available at `http://localhost:3000`.
 
-## API Documentation
-
-Once the server is running, you can access the Swagger documentation at:
-`http://localhost:3000/api-docs`
-
 ## Configuration
 
 The `.env` file contains all necessary configurations:
